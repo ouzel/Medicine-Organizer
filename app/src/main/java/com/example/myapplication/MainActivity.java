@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new CalendarFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.kits_menu:
                     replaceFragment(new KitsFragment());
                     break;
@@ -39,20 +39,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        // getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -63,14 +61,13 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 //            Dialog dialog = new Dialog(MainActivity.this);
 //            dialog.setContentView(R.layout.dialogue);
 //            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //            dialog.setCancelable(true);
 //            dialog.show();
-            Toast.makeText(MainActivity.this,"Дрозд Софья Александровна, БПИ215",
+            Toast.makeText(MainActivity.this, "Дрозд Софья Александровна, БПИ215",
                     Toast.LENGTH_LONG).show();
             return true;
         }

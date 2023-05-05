@@ -37,12 +37,9 @@ import java.util.Objects;
  */
 public class MedsFragment extends Fragment implements DialogCloseListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -70,7 +67,6 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
      * @param param2 Parameter 2.
      * @return A new instance of fragment MedsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MedsFragment newInstance(String param1, String param2) {
         MedsFragment fragment = new MedsFragment();
         Bundle args = new Bundle();
@@ -96,7 +92,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
 
         view22 = inflater.inflate(R.layout.fragment_meds, container, false);
 
-        Objects.requireNonNull(((AppCompatActivity)getActivity()).getSupportActionBar()).hide();
+        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).hide();
 
         db = new DatabaseHandler(view22.getContext());
         db.openDatabase();
@@ -115,7 +111,6 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
 
         taskList = db.getAllTasks();
 
-        //Collections.reverse(taskList);
         if (sorting == 1) {
             taskList.sort(new AlphabetComparator());
         } else {
@@ -131,7 +126,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddNewMed.newInstance().show(((AppCompatActivity)getActivity()).getSupportFragmentManager(),
+                AddNewMed.newInstance().show(((AppCompatActivity) getActivity()).getSupportFragmentManager(),
                         AddNewMed.TAG);
                 tasksAdapter.notifyDataSetChanged();
             }
@@ -144,13 +139,13 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
                 builder.setTitle("Сортировать лекарства");
                 builder.setMessage("Выберите сортировку");
                 builder.setPositiveButton("По названию", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                sorting = 1;
-                                taskList.sort(new AlphabetComparator());
-                                tasksAdapter.setTasks(taskList);
-                            }
-                        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sorting = 1;
+                        taskList.sort(new AlphabetComparator());
+                        tasksAdapter.setTasks(taskList);
+                    }
+                });
                 builder.setNegativeButton("По сроку годности", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -169,9 +164,8 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
     }
 
     @Override
-    public void handleDialogClose(DialogInterface dialog){
+    public void handleDialogClose(DialogInterface dialog) {
         taskList = db.getAllTasks();
-        //Collections.reverse(taskList);
         if (sorting == 1) {
             taskList.sort(new AlphabetComparator());
         } else {
@@ -187,18 +181,14 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    static class AlphabetComparator implements Comparator<MedModel>
-    {
-        public int compare(MedModel o1, MedModel o2)
-        {
+    static class AlphabetComparator implements Comparator<MedModel> {
+        public int compare(MedModel o1, MedModel o2) {
             return o1.getMed().compareTo(o2.getMed());
         }
     }
 
-    static class DateComparator implements Comparator<MedModel>
-    {
-        public int compare(MedModel o1, MedModel o2)
-        {
+    static class DateComparator implements Comparator<MedModel> {
+        public int compare(MedModel o1, MedModel o2) {
             String stringDate1 = o1.getDate();
             String stringDate2 = o2.getDate();
             String[] date1 = stringDate1.split("/");
@@ -215,8 +205,8 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
             if (date2[0].length() == 1) {
                 date2[0] = "0" + date2[0];
             }
-            String dateToSort1 = date1[2]+date1[1]+date1[0];
-            String dateToSort2 = date2[2]+date2[1]+date2[0];
+            String dateToSort1 = date1[2] + date1[1] + date1[0];
+            String dateToSort2 = date2[2] + date2[1] + date2[0];
             return dateToSort1.compareTo(dateToSort2);
         }
     }
