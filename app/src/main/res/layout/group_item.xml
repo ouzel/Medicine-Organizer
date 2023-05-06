@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameOfCategory"
+        android:paddingLeft="50dp"
+        android:text="" />
+
+    <ImageView
+        android:id="@+id/imageViewCategory"
+        android:layout_width="49dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:contentDescription="TODO"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+
+</LinearLayout>

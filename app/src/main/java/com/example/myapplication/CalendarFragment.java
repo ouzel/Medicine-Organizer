@@ -1,11 +1,9 @@
 package com.example.myapplication;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.example.myapplication.calendar.CalendarUtils.daysInWeekArray;
 import static com.example.myapplication.calendar.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,10 +22,6 @@ import com.example.myapplication.calendar.CalendarUtils;
 import com.example.myapplication.calendar.EventModel;
 import com.example.myapplication.calendar.EventAdapter;
 import com.example.myapplication.calendar.AddEventActivity;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -48,6 +42,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     private Button nextWeekBtn;
     private Button newEventBtn;
 
+
     View view;
 
     public CalendarFragment() {
@@ -66,7 +61,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -99,7 +94,6 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
                 newEventAction(view);
             }
         });
-
         setWeekView();
         return view;
     }
@@ -151,13 +145,5 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
     public void previousWeekAction(View view) {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
         setWeekView();
-    }
-
-    private void loadData() {
-        //
-    }
-
-    private void saveData() {
-        //
     }
 }

@@ -18,9 +18,9 @@ public class EventModel {
         return events;
     }
 
-    private String name;
-    private LocalDate date;
-    private LocalTime time;
+    public String name;
+    public LocalDate date;
+    public LocalTime time;
 
     public EventModel(String name, LocalDate date, LocalTime time) {
         this.name = name;

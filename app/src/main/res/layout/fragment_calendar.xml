@@ -142,7 +142,7 @@
     <ListView
         android:id="@+id/eventListView"
         android:layout_width="match_parent"
-        android:layout_height="294dp"
+        android:layout_height="221dp"
         android:layout_marginTop="400dp"
         android:layout_weight="5" />
 

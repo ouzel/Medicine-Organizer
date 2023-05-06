@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-
 
     }
 
@@ -74,4 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

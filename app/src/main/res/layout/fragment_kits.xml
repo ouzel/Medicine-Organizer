@@ -8,5 +8,23 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <ExpandableListView
+        android:id="@+id/elvMobiles"
+        android:layout_width="match_parent"
+        android:layout_height="496dp"></ExpandableListView>
 
+    <Button
+        android:id="@+id/btnAddCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:text="Button1" />
+
+    <Button
+        android:id="@+id/btnDeleteCat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="450dp"
+        android:text="Button2" />
 </FrameLayout>

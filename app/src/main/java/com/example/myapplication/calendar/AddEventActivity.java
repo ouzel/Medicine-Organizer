@@ -21,11 +21,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.TimePicker;
 import com.example.myapplication.med.DatabaseHandler;
 import com.example.myapplication.med.MedModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -95,7 +99,6 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        //long timeNow = System.currentTimeMillis();
         LocalDateTime ldt = LocalDateTime.of(eventStart.getYear(), eventStart.getMonthValue(),
                 eventStart.getDayOfMonth(), time.getHour(), time.getMinute(), time.getSecond());
         long timeNow = ldt.atZone(ZoneId.systemDefault())
