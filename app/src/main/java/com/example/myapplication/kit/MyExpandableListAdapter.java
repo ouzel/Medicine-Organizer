@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.kit;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,10 +7,16 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.R;
+import com.example.myapplication.med.DatabaseHandler;
+import com.example.myapplication.med.MedModel;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +25,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context;
     public Map<String, List<String>> mobileCollection;
     public List<String> groupList;
+
+    private DatabaseHandler db;
 
     public MyExpandableListAdapter(Context context, List<String> groupList,
                                    Map<String, List<String>> mobileCollection) {
@@ -64,6 +72,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
+        db = new DatabaseHandler(context);
+        db.openDatabase();
         String mobileName = getGroup(i).toString();
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -76,9 +86,20 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<String> child = mobileCollection.get(groupList.get(i));
-                child.add("Hooooooray");
-                notifyDataSetChanged();
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+                        android.R.layout.simple_spinner_dropdown_item, getMedsNames());
+                new androidx.appcompat.app.AlertDialog.Builder(context)
+                        .setTitle("Choose med")
+                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                List<String> child = mobileCollection.get(groupList.get(i));
+                                child.add(getMedsNames().get(which));
+                                notifyDataSetChanged();
+                                dialog.dismiss();
+                            }
+                        }).create().show();
             }
         });
         return view;
@@ -125,6 +146,15 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+    public List<String> getMedsNames() {
+        List<MedModel> medsList = db.getAllTasks();
+        List<String> medNamesList = new ArrayList<>();
+        for (MedModel mm : medsList) {
+            medNamesList.add(mm.getMed());
+        }
+        return medNamesList;
     }
 
 }

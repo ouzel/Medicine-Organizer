@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.kit;
 
 import java.util.ArrayList;
 import java.util.HashMap;

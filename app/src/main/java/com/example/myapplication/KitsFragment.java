@@ -1,15 +1,22 @@
 package com.example.myapplication;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+
+import com.example.myapplication.kit.KitsModel;
+import com.example.myapplication.kit.MyExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,20 +82,60 @@ public class KitsFragment extends Fragment {
         btnAddCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                groupList.add("categorie");
-                mobileCollection.put("categorie", new ArrayList<>());
-                expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
-                expandableListView.setAdapter(expandableListAdapter);
+//                groupList.add("categorie");
+//                mobileCollection.put("categorie", new ArrayList<>());
+//                expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
+//                expandableListView.setAdapter(expandableListAdapter);
+
+                final View view1 = getLayoutInflater().inflate(R.layout.get_category_name, null);
+                AlertDialog alertDialog = new AlertDialog.Builder(requireContext()).create();
+                alertDialog.setTitle("Your Title Here");
+                alertDialog.setCancelable(false);
+                alertDialog.setMessage("Your Message Here");
+
+
+                final EditText etComments = (EditText) view1.findViewById(R.id.etComments);
+
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        groupList.add(etComments.getText().toString());
+                        mobileCollection.put(etComments.getText().toString(), new ArrayList<>());
+                        expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
+                        expandableListView.setAdapter(expandableListAdapter);
+                    }
+                });
+
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.setView(view1);
+                alertDialog.show();
             }
         });
 
         btnDeleteCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                groupList.remove("categorie");
-                mobileCollection.remove("categorie");
-                expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
-                expandableListView.setAdapter(expandableListAdapter);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_dropdown_item, groupList);
+                new androidx.appcompat.app.AlertDialog.Builder(getContext())
+                        .setTitle("Choose med")
+                        .setAdapter(adapter, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String toDel = groupList.get(which);
+                                groupList.remove(toDel);
+                                mobileCollection.remove(toDel);
+                                expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
+                                expandableListView.setAdapter(expandableListAdapter);
+                                dialog.dismiss();
+                            }
+                        }).create().show();
             }
         });
         expandableListView = view33.findViewById(R.id.elvMobiles);
