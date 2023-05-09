@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Calendar"
+    <item
         android:id="@+id/calendar_menu"
-        android:icon="@drawable/ic_baseline_bar_chart_24"/>
-    <item android:title="Kits"
+        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:title="Календарь" />
+    <item
         android:id="@+id/kits_menu"
-        android:icon="@drawable/ic_baseline_calendar_month_24"/>
-    <item android:title="Meds"
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:title="Аптечки" />
+    <item
         android:id="@+id/meds_menu"
-        android:icon="@drawable/ic_baseline_view_list_24"/>
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="Медикаменты" />
 </menu>

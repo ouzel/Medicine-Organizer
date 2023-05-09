@@ -60,7 +60,7 @@ public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> {
 
     public void deleteItem(int position) {
         MedModel item = medsList.get(position);
-        db.deleteTask(item.getId());
+        db.deleteMed(item.getId());
         medsList.remove(position);
         notifyItemRemoved(position);
     }

@@ -46,7 +46,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
     }
 
-    public void insertTask(MedModel med) {
+    public void insertMed(MedModel med) {
         ContentValues cv = new ContentValues();
         cv.put(MED, med.getMed());
         cv.put(DATE, med.getDate());
@@ -56,7 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public List<MedModel> getAllTasks() {
+    public List<MedModel> getAllMeds() {
         List<MedModel> medList = new ArrayList<>();
         Cursor cur = null;
         db.beginTransaction();
@@ -84,7 +84,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return medList;
     }
 
-    public void updateTask(int id, String med, String date, int amount) {
+    public void updateMed(int id, String med, String date, int amount) {
         ContentValues cv = new ContentValues();
         cv.put(MED, med);
         cv.put(DATE, date);
@@ -92,7 +92,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(TODO_TABLE, cv, ID + "= ?", new String[]{String.valueOf(id)});
     }
 
-    public void deleteTask(int id) {
+    public void deleteMed(int id) {
         db.delete(TODO_TABLE, ID + "= ?", new String[]{String.valueOf(id)});
     }
 }

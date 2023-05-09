@@ -19,9 +19,9 @@
             android:layout_weight="1"
             android:background="@null"
             android:onClick="previousWeekAction"
-            android:text="BACK"
+            android:text="НАЗАД"
             android:textColor="@color/purple_500"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -41,9 +41,9 @@
             android:layout_weight="1"
             android:background="@null"
             android:onClick="nextWeekAction"
-            android:text="NEXT"
+            android:text="ВПЕРЕД"
             android:textColor="@color/purple_500"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -58,7 +58,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SUN"
+            android:text="ВС"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -67,7 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MON"
+            android:text="ПН"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -76,7 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TUE"
+            android:text="ВТ"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -85,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="WED"
+            android:text="СР"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -94,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="THUR"
+            android:text="ЧТ"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -103,7 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="FRI"
+            android:text="ПТ"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -112,7 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SAT"
+            android:text="СБ"
             android:textAlignment="center"
             android:textColor="@color/teal_200"
             android:textSize="16sp" />
@@ -134,7 +134,7 @@
         android:layout_gravity="center"
         android:background="@null"
         android:onClick="newEventAction"
-        android:text="New Event"
+        android:text="Создать напоминание"
         android:textColor="@color/purple_500"
         android:textSize="20sp"
         android:textStyle="bold" />

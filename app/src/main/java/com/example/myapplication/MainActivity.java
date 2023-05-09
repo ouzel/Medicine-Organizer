@@ -56,24 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-//            Dialog dialog = new Dialog(MainActivity.this);
-//            dialog.setContentView(R.layout.dialogue);
-//            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            dialog.setCancelable(true);
-//            dialog.show();
-            Toast.makeText(MainActivity.this, "Дрозд Софья Александровна, БПИ215",
+            Toast.makeText(MainActivity.this, "Дрозд Софья Александровна",
                     Toast.LENGTH_LONG).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

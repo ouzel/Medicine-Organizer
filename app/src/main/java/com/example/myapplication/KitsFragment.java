@@ -16,7 +16,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.example.myapplication.kit.KitsModel;
-import com.example.myapplication.kit.MyExpandableListAdapter;
+import com.example.myapplication.kit.KitsExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class KitsFragment extends Fragment {
 
     List<String> groupList;
     List<String> childList;
-    Map<String, List<String>> mobileCollection;
+    Map<String, List<String>> medCollection;
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
 
@@ -62,7 +62,7 @@ public class KitsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -76,22 +76,17 @@ public class KitsFragment extends Fragment {
         KitsModel.initialize();
         groupList = KitsModel.groupList;
         childList = KitsModel.childList;
-        mobileCollection = KitsModel.mobileCollection;
+        medCollection = KitsModel.medCollection;
         btnAddCat = view33.findViewById(R.id.btnAddCat);
         btnDeleteCat = view33.findViewById(R.id.btnDeleteCat);
         btnAddCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                groupList.add("categorie");
-//                mobileCollection.put("categorie", new ArrayList<>());
-//                expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
-//                expandableListView.setAdapter(expandableListAdapter);
-
                 final View view1 = getLayoutInflater().inflate(R.layout.get_category_name, null);
                 AlertDialog alertDialog = new AlertDialog.Builder(requireContext()).create();
-                alertDialog.setTitle("Your Title Here");
+                alertDialog.setTitle("Добавление аптечки");
                 alertDialog.setCancelable(false);
-                alertDialog.setMessage("Your Message Here");
+                //alertDialog.setMessage("Your Message Here");
 
 
                 final EditText etComments = (EditText) view1.findViewById(R.id.etComments);
@@ -100,13 +95,13 @@ public class KitsFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         groupList.add(etComments.getText().toString());
-                        mobileCollection.put(etComments.getText().toString(), new ArrayList<>());
-                        expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
+                        medCollection.put(etComments.getText().toString(), new ArrayList<>());
+                        expandableListAdapter = new KitsExpandableListAdapter(getContext(), groupList, medCollection);
                         expandableListView.setAdapter(expandableListAdapter);
                     }
                 });
 
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Отмена", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         alertDialog.dismiss();
@@ -123,15 +118,15 @@ public class KitsFragment extends Fragment {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_spinner_dropdown_item, groupList);
                 new androidx.appcompat.app.AlertDialog.Builder(getContext())
-                        .setTitle("Choose med")
+                        .setTitle("Выберите медикамент")
                         .setAdapter(adapter, new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String toDel = groupList.get(which);
                                 groupList.remove(toDel);
-                                mobileCollection.remove(toDel);
-                                expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
+                                medCollection.remove(toDel);
+                                expandableListAdapter = new KitsExpandableListAdapter(getContext(), groupList, medCollection);
                                 expandableListView.setAdapter(expandableListAdapter);
                                 dialog.dismiss();
                             }
@@ -139,13 +134,14 @@ public class KitsFragment extends Fragment {
             }
         });
         expandableListView = view33.findViewById(R.id.elvMobiles);
-        expandableListAdapter = new MyExpandableListAdapter(getContext(), groupList, mobileCollection);
+        expandableListAdapter = new KitsExpandableListAdapter(getContext(), groupList, medCollection);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             int lastExpandedPosition = -1;
+
             @Override
             public void onGroupExpand(int i) {
-                if(lastExpandedPosition != -1 && i != lastExpandedPosition){
+                if (lastExpandedPosition != -1 && i != lastExpandedPosition) {
                     expandableListView.collapseGroup(lastExpandedPosition);
                 }
                 lastExpandedPosition = i;
@@ -154,7 +150,7 @@ public class KitsFragment extends Fragment {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-                String selected = expandableListAdapter.getChild(i,i1).toString();
+                String selected = expandableListAdapter.getChild(i, i1).toString();
                 //Toast.makeText(getApplicationContext(), "Selected: " + selected, Toast.LENGTH_SHORT).show();
                 return true;
             }

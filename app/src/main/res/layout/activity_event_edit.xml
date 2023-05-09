@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:background="@null"
         android:onClick="saveEventAction"
-        android:text="Save"
+        android:text="Сохранить"
         android:textColor="@color/purple_500"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -62,24 +62,25 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="chooseMedName" />
+        android:onClick="chooseMedName"
+        android:text="Найти лекарство в базе" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="chooseDateFrom"
-        android:text="FromDate" />
+        android:text="Начало приема" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="chooseDateTo"
-        android:text="ToDate" />
+        android:text="Окончание приема" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="chooseTime"
-        android:text="TimeDate" />
+        android:text="Время приема" />
 
 </LinearLayout>

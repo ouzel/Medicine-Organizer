@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MyExpandableListAdapter extends BaseExpandableListAdapter {
+public class KitsExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     public Map<String, List<String>> mobileCollection;
@@ -28,8 +28,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
     private DatabaseHandler db;
 
-    public MyExpandableListAdapter(Context context, List<String> groupList,
-                                   Map<String, List<String>> mobileCollection) {
+    public KitsExpandableListAdapter(Context context, List<String> groupList,
+                                     Map<String, List<String>> mobileCollection) {
         this.context = context;
         this.mobileCollection = mobileCollection;
         this.groupList = groupList;
@@ -89,7 +89,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
                         android.R.layout.simple_spinner_dropdown_item, getMedsNames());
                 new androidx.appcompat.app.AlertDialog.Builder(context)
-                        .setTitle("Choose med")
+                        .setTitle("Выберите медикамент")
                         .setAdapter(adapter, new DialogInterface.OnClickListener() {
 
                             @Override
@@ -119,18 +119,17 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Do you want to remove?");
+                builder.setMessage("Удалить?");
                 builder.setCancelable(true);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id) {
                         List<String> child = mobileCollection.get(groupList.get(i));
                         child.remove(i1);
-                        //child.add("Hooooooray");
                         notifyDataSetChanged();
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
@@ -149,7 +148,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     public List<String> getMedsNames() {
-        List<MedModel> medsList = db.getAllTasks();
+        List<MedModel> medsList = db.getAllMeds();
         List<String> medNamesList = new ArrayList<>();
         for (MedModel mm : medsList) {
             medNamesList.add(mm.getMed());

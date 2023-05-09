@@ -8,33 +8,30 @@ import java.util.Map;
 public class KitsModel {
     public static List<String> groupList;
     public static List<String> childList;
-    public static Map<String, List<String>> mobileCollection;
+    public static Map<String, List<String>> medCollection;
     public static boolean initialized = false;
 
 
     public static void initialize() {
         if (!initialized) {
             groupList = new ArrayList<>();
-            groupList.add("Kit1");
-            groupList.add("Kit2");
+            groupList.add("Экстренная помощь");
 
-            String[] samsungModels = {"med11", "med12"};
-            String[] googleModels = {"med21", "med22"};
-            mobileCollection = new HashMap<String, List<String>>();
+            String[] defaultModels = {"бинты", "пластыри"};
+            medCollection = new HashMap<String, List<String>>();
             for (String group : groupList) {
-                if (group.equals("Kit1")) {
-                    loadChild(samsungModels);
-                } else if (group.equals("Kit2"))
-                    loadChild(googleModels);
-                mobileCollection.put(group, childList);
+                if (group.equals("Экстренная помощь")) {
+                    loadChild(defaultModels);
+                }
+                medCollection.put(group, childList);
             }
             initialized = true;
         }
     }
 
-    private static void loadChild(String[] mobileModels) {
+    private static void loadChild(String[] medModels) {
         childList = new ArrayList<>();
-        for (String model : mobileModels) {
+        for (String model : medModels) {
             childList.add(model);
         }
     }

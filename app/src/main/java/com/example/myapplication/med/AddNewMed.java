@@ -153,13 +153,13 @@ public class AddNewMed extends BottomSheetDialogFragment {
                         amount = Integer.parseInt(stringAmount);
                         String date = dateBtn.getText().toString();
                         if (finalIsUpdate) {
-                            db.updateTask(bundle.getInt("id"), text, date, amount);
+                            db.updateMed(bundle.getInt("id"), text, date, amount);
                         } else {
                             MedModel task = new MedModel();
                             task.setMed(text);
                             task.setAmount(amount);
                             task.setDate(date);
-                            db.insertTask(task);
+                            db.insertMed(task);
                         }
                         dismiss();
                     }

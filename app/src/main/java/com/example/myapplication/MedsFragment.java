@@ -79,7 +79,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -91,8 +91,6 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
                              Bundle savedInstanceState) {
 
         view22 = inflater.inflate(R.layout.fragment_meds, container, false);
-
-        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).hide();
 
         db = new DatabaseHandler(view22.getContext());
         db.openDatabase();
@@ -109,7 +107,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
         fab = view22.findViewById(R.id.fab);
         fab2 = view22.findViewById(R.id.fab2);
 
-        taskList = db.getAllTasks();
+        taskList = db.getAllMeds();
 
         if (sorting == 1) {
             taskList.sort(new AlphabetComparator());
@@ -146,7 +144,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
                         tasksAdapter.setTasks(taskList);
                     }
                 });
-                builder.setNegativeButton("По сроку годности", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("По сроку\nгодности", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sorting = 2;
@@ -165,7 +163,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
 
     @Override
     public void handleDialogClose(DialogInterface dialog) {
-        taskList = db.getAllTasks();
+        taskList = db.getAllMeds();
         if (sorting == 1) {
             taskList.sort(new AlphabetComparator());
         } else {
@@ -177,7 +175,6 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // TODO Add your menu entries here
         super.onCreateOptionsMenu(menu, inflater);
     }
 

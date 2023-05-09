@@ -21,15 +21,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.TimePicker;
 import com.example.myapplication.med.DatabaseHandler;
 import com.example.myapplication.med.MedModel;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -56,8 +52,8 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         createNotificationChannel();
         initWidgets();
         time = LocalTime.now();
-        eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
-        eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+        eventDateTV.setText("Даты: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
+        eventTimeTV.setText("Время: " + CalendarUtils.formattedTime(time));
         db = new DatabaseHandler(this);
         db.openDatabase();
         initDatePicker();
@@ -91,7 +87,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
     }
 
     private void addNotification(String eventName, LocalDate eventStart, LocalTime time) {
-        Toast.makeText(this, "Reminder set!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Напоминание установлено!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(AddEventActivity.this, ReminderBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(AddEventActivity.this, 0,
@@ -124,7 +120,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
 
     public List<String> getMedsNames() {
-        List<MedModel> medsList = db.getAllTasks();
+        List<MedModel> medsList = db.getAllMeds();
         List<String> medNamesList = new ArrayList<>();
         for (MedModel mm : medsList) {
             medNamesList.add(mm.getMed());
@@ -136,7 +132,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item, getMedsNames());
         new AlertDialog.Builder(this)
-                .setTitle("Choose med")
+                .setTitle("Выберите медикамент")
                 .setAdapter(adapter, new DialogInterface.OnClickListener() {
 
                     @Override
