@@ -53,7 +53,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         initWidgets();
         time = LocalTime.now();
         eventDateTV.setText("Даты: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
-        eventTimeTV.setText("Время: " + CalendarUtils.formattedTime(time));
+        eventTimeTV.setText(time.getHour() + ":" + time.getMinute());
         db = new DatabaseHandler(this);
         db.openDatabase();
         initDatePicker();
@@ -96,7 +96,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         LocalDateTime ldt = LocalDateTime.of(eventStart.getYear(), eventStart.getMonthValue(),
-                eventStart.getDayOfMonth(), time.getHour(), time.getMinute(), time.getSecond());
+                eventStart.getDayOfMonth(), time.getHour(), time.getMinute(), 0);
         long timeNow = ldt.atZone(ZoneId.systemDefault())
                 .toInstant()
                 .toEpochMilli();
@@ -167,7 +167,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                 yearFrom = year;
                 monthFrom = month;
                 dayFrom = day;
-                eventDateTV.setText(dateStart + " - " + dateFinish);
+                eventDateTV.setText(dateStart + "\n-\n" + dateFinish);
             }
         };
 
@@ -179,7 +179,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
                 yearTo = year;
                 monthTo = month;
                 dayTo = day;
-                eventDateTV.setText(dateStart + " - " + dateFinish);
+                eventDateTV.setText(dateStart + "\n-\n" + dateFinish);
             }
         };
 
@@ -196,10 +196,10 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         String defaultDate = day + "/" + (month + 1) + "/" + year;
         dateStart = defaultDate;
         dateFinish = defaultDate;
-        eventDateTV.setText(dateStart + " - " + dateFinish);
+        eventDateTV.setText(dateStart + "\n-\n" + dateFinish);
         datePickerDialog1 = new DatePickerDialog(this, dateListener1, year, month, day);
         datePickerDialog2 = new DatePickerDialog(this, dateListener2, year, month, day);
-        eventDateTV.setText(dateStart + " - " + dateFinish);
+        eventDateTV.setText(dateStart + "\n-\n" + dateFinish);
 
     }
 
@@ -213,7 +213,7 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     @Override
     public void onTimeSet(android.widget.TimePicker timePicker, int i, int i1) {
-        eventTimeTV.setText("Time: " + i + ":" + i1);
+        eventTimeTV.setText(i + ":" + i1);
         time = LocalTime.of(i, i1);
     }
 }

@@ -40,7 +40,7 @@ public class MedAdapter extends RecyclerView.Adapter<MedAdapter.ViewHolder> {
 
         final MedModel item = medsList.get(position);
         holder.med.setText(item.getMed());
-        holder.amount.setText(String.valueOf(item.getAmount()));
+        holder.amount.setText(String.valueOf(item.getAmount()) + " шт/мл");
         holder.date.setText(item.getDate());
     }
 

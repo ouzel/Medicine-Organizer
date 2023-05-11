@@ -144,7 +144,7 @@ public class MedsFragment extends Fragment implements DialogCloseListener {
                         tasksAdapter.setTasks(taskList);
                     }
                 });
-                builder.setNegativeButton("По сроку\nгодности", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("По сроку годности", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sorting = 2;

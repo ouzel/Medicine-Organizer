@@ -3,11 +3,11 @@
 
     <item
         android:id="@+id/calendar_menu"
-        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:icon="@drawable/ic_baseline_calendar_month_24"
         android:title="Календарь" />
     <item
         android:id="@+id/kits_menu"
-        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:icon="@drawable/ic_baseline_category_24"
         android:title="Аптечки" />
     <item
         android:id="@+id/meds_menu"

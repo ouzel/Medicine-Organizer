@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:orientation="vertical">
+    android:background="#C4EDA4"
+    android:orientation="vertical"
+    android:outlineAmbientShadowColor="#4CAF50"
+    android:outlineSpotShadowColor="#4CAF50">
 
     <TextView
         android:id="@+id/eventCellTV"

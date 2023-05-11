@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pill_font"
     tools:context=".CalendarFragment">
 
     <LinearLayout
@@ -17,10 +18,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
             android:onClick="previousWeekAction"
             android:text="НАЗАД"
-            android:textColor="@color/purple_500"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -29,7 +28,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Feb 2021"
+            android:background="@color/white"
+            android:text="Feb 2023"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -39,10 +39,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
             android:onClick="nextWeekAction"
             android:text="ВПЕРЕД"
-            android:textColor="@color/purple_500"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -58,63 +56,70 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:text="ВС"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:text="ПН"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:text="ВТ"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:text="СР"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:text="ЧТ"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FDFDFD"
             android:text="ПТ"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:text="СБ"
             android:textAlignment="center"
-            android:textColor="@color/teal_200"
+            android:textColor="#577E6E"
             android:textSize="16sp" />
 
 
@@ -124,27 +129,41 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:layout_marginTop="110dp" />
+        android:layout_height="66dp"
+        android:layout_marginTop="110dp"
+        android:background="#FFFFFF" />
 
     <Button
         android:id="@+id/newEventBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@null"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="480dp"
         android:onClick="newEventAction"
         android:text="Создать напоминание"
-        android:textColor="@color/purple_500"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <ListView
         android:id="@+id/eventListView"
-        android:layout_width="match_parent"
+        android:layout_width="362dp"
         android:layout_height="221dp"
-        android:layout_marginTop="400dp"
-        android:layout_weight="5" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="230dp"
+        android:layout_weight="5"
+        android:background="#FFFFFF"
+        android:cacheColorHint="#C4EDA4"
+        android:outlineAmbientShadowColor="#4CAF50"
+        android:outlineSpotShadowColor="#4CAF50" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="206dp"
+        android:background="@android:color/transparent"
+        android:text="Список напоминаний:" />
 
 
 </FrameLayout>

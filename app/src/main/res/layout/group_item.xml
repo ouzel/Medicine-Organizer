@@ -3,21 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#C4EDA4"
+    android:orientation="horizontal"
+    android:outlineAmbientShadowColor="#4CAF50"
+    android:outlineSpotShadowColor="#4CAF50"
     android:padding="10dp">
 
     <TextView
         android:id="@+id/nameOfCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="50dp"
-        android:text="" />
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:paddingLeft="50dp" />
 
     <ImageView
         android:id="@+id/imageViewCategory"
-        android:layout_width="49dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:contentDescription="TODO"
         app:srcCompat="@android:drawable/ic_input_add" />
 

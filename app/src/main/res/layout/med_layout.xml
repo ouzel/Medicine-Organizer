@@ -37,9 +37,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/medTextView"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="54dp"
             android:buttonTint="@android:color/background_light"
             android:paddingEnd="10dp"
-            tools:text="1000" />
+            tools:text="9999999" />
 
     </RelativeLayout>
 

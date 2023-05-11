@@ -4,25 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pill_font"
     tools:context=".KitsFragment">
 
     <ExpandableListView
         android:id="@+id/elvMobiles"
-        android:layout_width="match_parent"
-        android:layout_height="496dp"></ExpandableListView>
+        android:layout_width="356dp"
+        android:layout_height="406dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:cacheColorHint="#FFFFFF"></ExpandableListView>
 
     <Button
         android:id="@+id/btnAddCat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="450dp"
-        android:text="Новая\nаптечка" />
+        android:text="Добавить\nаптечку"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/btnDeleteCat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="210dp"
         android:layout_marginTop="450dp"
-        android:text="Удалить\nаптечку" />
+        android:text="Удалить\nаптечку"
+        android:textColor="#FFFFFF" />
 </FrameLayout>
