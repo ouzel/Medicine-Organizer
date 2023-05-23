@@ -107,6 +107,7 @@ public class CalendarFragment extends Fragment implements CalendarAdapter.OnItem
 
     private void setWeekView() {
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        //monthYearText.setText("Май 2023");
         ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);

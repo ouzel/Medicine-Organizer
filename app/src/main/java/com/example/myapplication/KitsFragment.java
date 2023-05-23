@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.myapplication.kit.KitsModel;
 import com.example.myapplication.kit.KitsExpandableListAdapter;
@@ -94,10 +95,19 @@ public class KitsFragment extends Fragment {
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        groupList.add(etComments.getText().toString());
-                        medCollection.put(etComments.getText().toString(), new ArrayList<>());
-                        expandableListAdapter = new KitsExpandableListAdapter(getContext(), groupList, medCollection);
-                        expandableListView.setAdapter(expandableListAdapter);
+                        String naming = etComments.getText().toString();
+                        if (groupList.contains(naming)) {
+                            String mess = "Аптечка " + naming + " уже существует";
+                            Toast.makeText(getContext(), mess, Toast.LENGTH_SHORT).show();
+                        } else if (naming.trim().length() == 0 || naming.trim().length() > 50) {
+                            String mess = "Название должно быть от 1 до 50 символов";
+                            Toast.makeText(getContext(), mess, Toast.LENGTH_SHORT).show();
+                        } else {
+                            groupList.add(etComments.getText().toString());
+                            medCollection.put(etComments.getText().toString(), new ArrayList<>());
+                            expandableListAdapter = new KitsExpandableListAdapter(getContext(), groupList, medCollection);
+                            expandableListView.setAdapter(expandableListAdapter);
+                        }
                     }
                 });
 
@@ -118,12 +128,16 @@ public class KitsFragment extends Fragment {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                         android.R.layout.simple_spinner_dropdown_item, groupList);
                 new androidx.appcompat.app.AlertDialog.Builder(getContext())
-                        .setTitle("Выберите медикамент")
+                        .setTitle("Удаление аптечки")
                         .setAdapter(adapter, new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String toDel = groupList.get(which);
+                                if (groupList.contains(toDel)) {
+                                    String mess = "Аптечка " + toDel + " успешно удалена";
+                                    Toast.makeText(getContext(), mess, Toast.LENGTH_SHORT).show();
+                                }
                                 groupList.remove(toDel);
                                 medCollection.remove(toDel);
                                 expandableListAdapter = new KitsExpandableListAdapter(getContext(), groupList, medCollection);

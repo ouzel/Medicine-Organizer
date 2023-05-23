@@ -53,7 +53,11 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
         initWidgets();
         time = LocalTime.now();
         eventDateTV.setText("Даты: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
-        eventTimeTV.setText(time.getHour() + ":" + time.getMinute());
+        if (String.valueOf(time.getMinute()).length() == 1) {
+            eventTimeTV.setText(time.getHour() + ":0" + time.getMinute());
+        } else {
+            eventTimeTV.setText(time.getHour() + ":" + time.getMinute());
+        }
         db = new DatabaseHandler(this);
         db.openDatabase();
         initDatePicker();
@@ -68,11 +72,16 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     public void saveEventAction(View view) {
         String eventName = eventNameET.getText().toString();
+        int counter = 0;
         monthFrom += 1;
         monthTo += 1;
         LocalDate eventStart = LocalDate.of(yearFrom, monthFrom, dayFrom);
         while ((yearFrom < yearTo) || (yearFrom == yearTo && monthFrom < monthTo) ||
                 (yearFrom == yearTo && monthFrom == monthTo && dayFrom <= dayTo)) {
+            if (counter >= 60) {
+                break;
+            }
+            ++counter;
             EventModel newEvent = new EventModel(eventName, eventStart, time);
             EventModel.eventsList.add(newEvent);
             ReminderBroadcast.notifName = eventName;
@@ -82,6 +91,13 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
             yearFrom = eventStart.getYear();
             monthFrom = eventStart.getMonthValue();
             dayFrom = eventStart.getDayOfMonth();
+        }
+        if (counter == 0) {
+            String mess = "Неверный период, напоминания не установлены";
+            Toast.makeText(this, mess, Toast.LENGTH_SHORT).show();
+        } else if (counter > 60) {
+            String mess = "Напоминания установлены на первые 60 дней заданного периода";
+            Toast.makeText(this, mess, Toast.LENGTH_SHORT).show();
         }
         finish();
     }
@@ -213,7 +229,12 @@ public class AddEventActivity extends AppCompatActivity implements TimePickerDia
 
     @Override
     public void onTimeSet(android.widget.TimePicker timePicker, int i, int i1) {
-        eventTimeTV.setText(i + ":" + i1);
+        //eventTimeTV.setText(i + ":" + i1);
+        if (String.valueOf(i1).length() == 1) {
+            eventTimeTV.setText(i + ":0" + i1);
+        } else {
+            eventTimeTV.setText(i + ":" + i1);
+        }
         time = LocalTime.of(i, i1);
     }
 }

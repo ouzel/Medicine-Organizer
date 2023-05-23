@@ -11,7 +11,20 @@ public class CalendarUtils {
 
     public static String formattedDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        return date.format(formatter);
+        String current = date.format(formatter);
+        current = current.replace("January", "Январь");
+        current = current.replace("February", "Февраль");
+        current = current.replace("March", "Март");
+        current = current.replace("April", "Апрель");
+        current = current.replace("May", "Май");
+        current = current.replace("June", "Июнь");
+        current = current.replace("July", "Июль");
+        current = current.replace("August", "Август");
+        current = current.replace("September", "Сентябрь");
+        current = current.replace("October", "Октябрь");
+        current = current.replace("November", "Ноябрь");
+        current = current.replace("December", "Декабрь");
+        return current;
     }
 
     public static String formattedTime(LocalTime time) {
@@ -21,7 +34,20 @@ public class CalendarUtils {
 
     public static String monthYearFromDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
-        return date.format(formatter);
+        String current = date.format(formatter);
+        current = current.replace("January", "Январь");
+        current = current.replace("February", "Февраль");
+        current = current.replace("March", "Март");
+        current = current.replace("April", "Апрель");
+        current = current.replace("May", "Май");
+        current = current.replace("June", "Июнь");
+        current = current.replace("July", "Июль");
+        current = current.replace("August", "Август");
+        current = current.replace("September", "Сентябрь");
+        current = current.replace("October", "Октябрь");
+        current = current.replace("November", "Ноябрь");
+        current = current.replace("December", "Декабрь");
+        return current;
     }
 
     public static ArrayList<LocalDate> daysInWeekArray(LocalDate selectedDate) {

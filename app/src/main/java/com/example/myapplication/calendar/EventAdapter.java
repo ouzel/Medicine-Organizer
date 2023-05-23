@@ -28,10 +28,15 @@ public class EventAdapter extends ArrayAdapter<EventModel> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
-
-        String eventTitle = event.getTime().getHour() + ":" + event.getTime().getMinute() + " "
-                + event.getName() ;
-        eventCellTV.setText(eventTitle);
+        if (String.valueOf(event.getTime().getMinute()).length() == 1) {
+            String eventTitle = event.getTime().getHour() + ":0" + event.getTime().getMinute() + " "
+                    + event.getName() ;
+            eventCellTV.setText(eventTitle);
+        } else {
+            String eventTitle = event.getTime().getHour() + ":" + event.getTime().getMinute() + " "
+                    + event.getName() ;
+            eventCellTV.setText(eventTitle);
+        }
         return convertView;
     }
 }
